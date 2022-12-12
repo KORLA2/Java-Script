@@ -1,0 +1,63 @@
+Both debouncing and throttling are used to improve the performance of web application by reducing redundant network / event calls when an event triggers.
+
+As network /event calls need not to be made each and every time when ever the event triggers, so we want to use them efficiently. For that both debounce and throttle are used.👍
+
+Both have a different ways to limit the rate of calls.
+
+Debouncing
+Making event calls only when the difference between users previous interaction and current interaction exceeds the certain time. Interaction may be typing something in E-commerce site , Resizing window ,Scrolling any web app etc...
+
+For Example when ever we are searching some thing on Ecommerce app or google or youtube etc related feed is not generated for each and every key press instead after a specific gap that we give while typing related feed will be generated.
+
+It waits until a user stops typing
+
+
+let Expensive=()=>{
+console.log("Iam Expensive call me only when you need");
+}
+
+function debounce_demo(){
+let limit;
+
+clearTimeOut(limit);
+
+limit=setTimeOut(()=>{
+Expensive();
+},300)
+
+}
+
+
+Making event calls frequently after specific time instead of calling after each and every keystroke to limit rate of event calls.
+
+For Example In auto saving feature throttling would be best idea as it saves users modified data frequently .
+
+Another Example could be infinite scroll , we need to identify the position of scroll bar frequently after certain time interval in order to fetch new feed.
+
+Throttling Implementation:
+
+let Expensive=()=>{
+console.log("Iam Expensive call me only when you need");
+}
+
+let passed=true;
+
+function throttle_demo(){
+
+if(passed)
+Expensive();
+
+passed=false;
+  setTimeOut(()=>{
+  passed=true;
+       },300)
+
+   }
+   
+   
+   If we implement throttling for search bar then for every key press throttle_demo was called and for every 300ms 
+   Expensive function will be called and all the calls to throttle_demo less than 300ms are redundant and they doesn't call expensive function...😎
+
+
+
+
